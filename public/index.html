@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Markus Konfirmation 2013</title>
+
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<link href="components/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen">
+	<link href="components/bootstrap/css/bootstrap-responsive.min.css" rel="stylesheet">
+
+	<link href="/css/main.css" rel="stylesheet">
+</head>
+<body>
+
+	<div class="container" id="app">
+		<div class="hero-unit"> </div>
+
+		<div id="questions"></div>
+	</div>
+
+	<footer class="footer">
+		<div class="container">
+			<p>Alt med kærlig hilsen fra<br />
+			Moster Signe og Onkel Søren</p>
+			<hr />
+			<div class="technology">
+				<p>
+					Drevet af &nbsp;&nbsp;<a href="http://backbonejs.org/"><img src="/img/logo_backbone.png" /></a>&nbsp;&nbsp; og &nbsp;&nbsp;<a href="http://twitter.github.io/bootstrap/"><img src="/img/logo_twitterBootstrap.png" /></a>&nbsp;&nbsp;
+					<br />
+					Bakket op af &nbsp;&nbsp;<a href="http://nodejs.org/"><img src="/img/logo_node.png" /></a>&nbsp;&nbsp;
+					<br />
+					Leveret af &nbsp;&nbsp;<a href="https://www.heroku.com/"><img src="/img/logo_heroku.png" /></a>
+					<br />
+					<a href="https://github.com/sorenkrabbe/markusKonf">Kontroller kildekoden på GitHub</a>
+				</p>
+			</div>
+		</div>
+	</footer>
+
+	<script type="text/template" id="question-template">
+			<p><%- question.get("order") %>) <%- question.get("description") %></p>
+			<ul>
+			<% question.get("answers").each(function(answer) { %>
+				<li class="<%- question.get("vote_for_answer_id")==answer.get("_id") ? 'selected' : '' %>" style="background-size: <%- answer.get("votes") / question.getSumOfVotes() * 100 %>% 22px;">
+					<a href="<%- answer.get("_id") %>" class="answer-option">
+						<img src="/img/pacman.png">
+						<span class="badge"><%- answer.get("votes") %></span>
+						<%- answer.get("description") %>
+					</a>
+				</li>
+			<% }); %>
+			</ul>
+			<div class="meta">
+				<%- question.getSumOfVotes() %> stemme<%- question.getSumOfVotes()!=1 ? 'r' : '' %> | 
+				<a href="#" class="refresh">hvad sker?</a>
+			</div>
+			<hr />	
+	</script>
+	
+	<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/2.3.1/js/bootstrap.min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.4.4/underscore-min.js"></script>
+	<script src="//cdnjs.cloudflare.com/ajax/libs/backbone.js/1.0.0/backbone-min.js"></script>
+	<script src="/components/backbone-relational.js"></script>
+
+	<script src="js/models/question.js"></script>
+	<script src="js/collections/questions.js"></script>
+
+	<script src="js/views/question.js"></script>
+	<script src="js/views/app.js"></script>
+	<script src="js/routers/router.js"></script>
+	<script src="js/app.js"></script>
+
+</body>
+</html>

@@ -1,0 +1,10 @@
+{
+    "name": "like-markus",
+    "description": "Markus konfirmation maj 2013",
+    "version": "0.0.1",
+    "private": true,
+    "dependencies": {
+        "express": "3.x",
+        "pg": "1.1.0"
+    }
+}
