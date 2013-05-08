@@ -37,14 +37,14 @@
 	</footer>
 
 	<script type="text/template" id="question-template">
-			<p><%- question.get("order") %>) <%- question.get("description") %></p>
+			<p><%- question.get("order") %>) <%= question.get("description") %></p>
 			<ul>
 			<% question.get("answers").each(function(answer) { %>
 				<li class="<%- question.get("vote_for_answer_id")==answer.get("_id") ? 'selected' : '' %>" style="background-size: <%- answer.get("votes") / question.getSumOfVotes() * 100 %>% 22px;">
 					<a href="<%- answer.get("_id") %>" class="answer-option">
 						<img src="/img/pacman.png">
 						<span class="badge"><%- answer.get("votes") %></span>
-						<%- answer.get("description") %>
+						<%= answer.get("description") %>
 					</a>
 				</li>
 			<% }); %>
